@@ -64,7 +64,7 @@ public class PhysicsComponent extends Component {
                 break;
             case RIGHT:
                 velocity.y = 0f;
-                this.gameObject.next_position.x = otherTopRight.getX() - this.boxCollider2D.getBounds().getWidth() / 2f + spacer;
+                this.gameObject.next_position.x = otherTopRight.getX() + this.boxCollider2D.getBounds().getWidth() / 2f + spacer;
                 System.out.println("Hit Right");
                 break;
         }
