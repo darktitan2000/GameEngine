@@ -8,7 +8,6 @@ public class BoxCollider2D extends Component {
     private boolean hasCollided = false;
     private Rectangle bounds;
 
-    private SIDES hitSideV = SIDES.NONE;
     private SIDES hitSide = SIDES.NONE;
 
     public SIDES getHitSide(){ return hitSide;}
@@ -39,7 +38,7 @@ public class BoxCollider2D extends Component {
     }
     public void findCollisionSide(BoxCollider2D otherBox2D){
         // overlap confirmed, now detect actual size
-        hitSideV = SIDES.NONE;
+        hitSide = SIDES.NONE;
         // is touching above
         boolean isTouchingAbove = this.bounds.getIsTouchingAbove(otherBox2D.bounds);
         boolean isTouchingBelow = false;
@@ -48,12 +47,12 @@ public class BoxCollider2D extends Component {
             isTouchingBelow = this.bounds.getIsTouchingBelow(otherBox2D.bounds);
         }
         if(isTouchingAbove){
-            hitSideV = SIDES.BOTTOM;
+            hitSide = SIDES.BOTTOM;
         }else if(isTouchingBelow){
-            hitSideV = SIDES.TOP;
+            hitSide = SIDES.TOP;
         }
         // do side
-        if (hitSideV == SIDES.NONE){
+        if (hitSide == SIDES.NONE){
             boolean isTouchingRight = this.bounds.getIsTouchingRight(otherBox2D.bounds);
             boolean isTouchingLeft = false;
             if(!isTouchingRight){

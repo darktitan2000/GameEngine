@@ -33,6 +33,20 @@ public class PhysicsComponent extends Component {
         this.velocity.mult(friction);
         this.gameObject.position = this.gameObject.next_position.copy();
         this.gameObject.next_position.add(this.velocity);
+        wrap_player();
+    }
+
+    void wrap_player(){
+        if(this.gameObject.next_position.x < 0){
+            this.gameObject.next_position.x = gameObject.parent.width;
+        }else if(this.gameObject.next_position.x > gameObject.parent.width){
+            this.gameObject.next_position.x = 0f;
+        }
+        if(this.gameObject.next_position.y < 0){
+            this.gameObject.next_position.y = gameObject.parent.height;
+        }else if(this.gameObject.next_position.y > gameObject.parent.height){
+        this.gameObject.next_position.y = 0f;
+        }
     }
 
     public void setVelocity(float x, float y) {

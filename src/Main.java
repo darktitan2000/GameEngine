@@ -2,7 +2,7 @@ import Core.game.TestGame;
 import processing.core.PApplet;
 
 public class Main extends PApplet {
-    private int WIDTH = 600, HEIGHT = 400;
+    public int WIDTH = 600, HEIGHT = 400;
     private TestGame testGame;
     public void settings(){
         size(WIDTH,HEIGHT);
