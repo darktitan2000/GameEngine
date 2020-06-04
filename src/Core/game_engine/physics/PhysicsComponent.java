@@ -33,10 +33,10 @@ public class PhysicsComponent extends Component {
         this.velocity.mult(friction);
         this.gameObject.position = this.gameObject.next_position.copy();
         this.gameObject.next_position.add(this.velocity);
-        wrap_player();
+        screenWrap();
     }
 
-    void wrap_player(){
+    void screenWrap(){
         if(this.gameObject.next_position.x < 0){
             this.gameObject.next_position.x = gameObject.parent.width;
         }else if(this.gameObject.next_position.x > gameObject.parent.width){
@@ -62,12 +62,12 @@ public class PhysicsComponent extends Component {
         switch (this.boxCollider2D.getHitSide()){
             case TOP:
                 // put this object on the bottom
-                this.gameObject.next_position.y = otherBottomLeft.getY() + this.boxCollider2D.getBounds().getHeight() / 2f + spacer;
+                this.gameObject.next_position.y = otherTopRight.getY() - this.boxCollider2D.getBounds().getHeight() / 2f - spacer;
                 velocity.y = gravity;
                 System.out.println("Hit Top");
                 break;
             case BOTTOM:
-                this.gameObject.next_position.y = otherTopRight.getY() - this.boxCollider2D.getBounds().getHeight() / 2f - spacer;
+                this.gameObject.next_position.y = otherBottomLeft.getY() + this.boxCollider2D.getBounds().getHeight() / 2f + spacer;
                 velocity.y = 0f;
                 System.out.println("Hit Bottom");
                 break;

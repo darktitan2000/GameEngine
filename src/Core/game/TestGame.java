@@ -22,7 +22,7 @@ public class TestGame {
         playerInput = new InputController(player);
         game_manager.add_game_object(player);
 
-        gamePlatform = new Platform(this.parent, 300, 200, 200, 80);
+        gamePlatform = new Platform(this.parent, 300, 350, 200, 80);
         game_manager.add_game_object(gamePlatform);
     }
 

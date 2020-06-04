@@ -47,9 +47,9 @@ public class BoxCollider2D extends Component {
             isTouchingBelow = this.bounds.getIsTouchingBelow(otherBox2D.bounds);
         }
         if(isTouchingAbove){
-            hitSide = SIDES.BOTTOM;
-        }else if(isTouchingBelow){
             hitSide = SIDES.TOP;
+        }else if(isTouchingBelow){
+            hitSide = SIDES.BOTTOM;
         }
         // do side
         if (hitSide == SIDES.NONE){
