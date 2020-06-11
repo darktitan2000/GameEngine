@@ -1,6 +1,7 @@
 package Core.game;
 import Core.game_engine.GameManager;
 import Core.game_engine.GameObject;
+import Core.game_engine.data_management.DataManager;
 import Core.game_engine.input_commands.InputController;
 import processing.core.PApplet;
 
@@ -10,7 +11,7 @@ public class TestGame {
     Platform gamePlatform;
     Player player;
     InputController playerInput;
-
+    DataManager dataManager;
     public TestGame(PApplet p){
         this.parent = p;
     }
@@ -24,6 +25,9 @@ public class TestGame {
 
         gamePlatform = new Platform(this.parent, 300, 350, 200, 80);
         game_manager.add_game_object(gamePlatform);
+
+        CollectableThing collectableThing = new CollectableThing(parent,450,300,20,20);
+        game_manager.add_game_object(collectableThing);
     }
 
     public void Update(){

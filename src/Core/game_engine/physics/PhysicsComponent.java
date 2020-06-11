@@ -1,6 +1,7 @@
 package Core.game_engine.physics;
 
 import Core.game_engine.Component;
+import Core.game_engine.LayerTypes;
 import Core.game_engine.Sprite;
 import processing.core.PVector;
 
@@ -24,9 +25,13 @@ public class PhysicsComponent extends Component {
         if(this.boxCollider2D.otherColliders.size() > 0){
             for(BoxCollider2D b : this.boxCollider2D.otherColliders){
                 // has hit do something
-
-                setCollisionSide(b);
-
+                if(b.gameObject.getLayerType() == LayerTypes.INTERACTABLE){
+                    // add score, remove it
+                    b.gameObject.setActive(false);
+                }else {
+                    //static stuff or moving
+                    setCollisionSide(b);
+                }
             }
             this.boxCollider2D.otherColliders.clear();
         }
@@ -58,28 +63,28 @@ public class PhysicsComponent extends Component {
         this.boxCollider2D.findCollisionSide(otherBox2D);
         Point otherTopRight = otherBox2D.getBounds().getTopRight();
         Point otherBottomLeft = otherBox2D.getBounds().getBottomLeft();
+
         // switch case for the side hit
         switch (this.boxCollider2D.getHitSide()){
             case TOP:
                 // put this object on the bottom
                 this.gameObject.next_position.y = otherTopRight.getY() - this.boxCollider2D.getBounds().getHeight() / 2f - spacer;
                 velocity.y = gravity;
-                System.out.println("Hit Top");
                 break;
+
             case BOTTOM:
                 this.gameObject.next_position.y = otherBottomLeft.getY() + this.boxCollider2D.getBounds().getHeight() / 2f + spacer;
                 velocity.y = 0f;
-                System.out.println("Hit Bottom");
                 break;
+
             case LEFT:
                 velocity.y = 0f;
                 this.gameObject.next_position.x = otherBottomLeft.getX() - this.boxCollider2D.getBounds().getWidth() / 2f - spacer;
-                System.out.println("Hit Left");
                 break;
+
             case RIGHT:
                 velocity.y = 0f;
                 this.gameObject.next_position.x = otherTopRight.getX() + this.boxCollider2D.getBounds().getWidth() / 2f + spacer;
-                System.out.println("Hit Right");
                 break;
         }
     }

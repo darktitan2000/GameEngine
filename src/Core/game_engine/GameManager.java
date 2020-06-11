@@ -26,9 +26,13 @@ public class GameManager {
             for (int j = i + 1; j < this.game_objects.size(); j++){
                 Sprite gB = this.game_objects.get(j);
                 // use layers to seperate moving from static
-                gA.boxCollider2D.check_Collisions(gB.boxCollider2D);
+                if(gA.getLayerType() == LayerTypes.MOVING && gB.getLayerType() != LayerTypes.BACKGROUND) {
+                    gA.boxCollider2D.check_Collisions(gB.boxCollider2D);
+                }
             }
             gA.update();
         }
     }
+
+
 }

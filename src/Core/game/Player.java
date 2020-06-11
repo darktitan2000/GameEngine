@@ -1,4 +1,5 @@
 package Core.game;
+import Core.game_engine.LayerTypes;
 import Core.game_engine.Sprite;
 import Core.game_engine.input_commands.MoveAble;
 import Core.game_engine.physics.PhysicsComponent;
@@ -12,6 +13,7 @@ public class Player extends Sprite implements MoveAble {
     public Player(PApplet p, int x, int y, int w, int h){
         super(p, x, y, w, h);
         this.parent = p;
+        this.layerType = LayerTypes.MOVING;
         this.size = new PVector(w,h, 0);
         physicsComponent = new PhysicsComponent(this, this.boxCollider2D);
     }
@@ -24,7 +26,7 @@ public class Player extends Sprite implements MoveAble {
         parent.rectMode(PApplet.CENTER);
         parent.translate(this.position.x, this.position.y);
         parent.fill(150,0,200,200);
-            this.parent.rect(0,0, this.size.x, this.size.y);
+        this.parent.rect(0,0, this.size.x, this.size.y);
         parent.popMatrix();
     }
 
